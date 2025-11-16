@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember & Grove Restaurant</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h1>Ember & Grove Restaurant</h1>
+        <p>Authentic Nigerian Flavors</p>
+    </div>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#menu">Menu</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Experience the Flavors of Nigeria</h2>
+        <p>Authentic soups, rice, and delicacies crafted with love</p>
+        <a href="#menu" class="cta-button">View Our Menu</a>
+    </div>
+</section>
+
+<section id="about" class="section">
+    <h2>About Us</h2>
+    <p>Ember & Grove Restaurant serves traditional Nigerian dishes with premium ingredients and a modern twist. Taste the culture today! <br>
+    Ember & Grove Restaurant was founded to bring the authentic flavors of Nigeria to every table. Our passion is preserving traditional recipes while presenting them with a modern, elegant touch. Every dish is prepared with love, fresh ingredients, and a dedication to quality that makes each meal unforgettable.</p>
+    <p>Our team is committed to providing exceptional service, maintaining clean and welcoming spaces, and ensuring that every customer leaves satisfied. Whether you’re dining in, picking up a takeaway, or ordering for a special event, Ember & Grove promises delicious food, memorable moments, and a taste of home.</p>
+</section>
+
+<section id="services" class="section">
+    <h2>Our Services</h2>
+    <ul>
+        <li>Dine-In</li>
+        <li>Takeaway & Pickup</li>
+        <li>Event Catering</li>
+        <li>Private Dinners</li>
+        <li>Special Orders</li>
+        <li>Reservations</li>
+    </ul>
+</section>
+
+<section id="menu" class="menu-section">
+    <h2>Our Menu</h2>
+    <div class="menu-filters">
+        <button data-category="all" class="active">All</button>
+        <button data-category="soup">Soups</button>
+        <button data-category="rice">Rice</button>
+        <button data-category="snack">Snacks</button>
+        <button data-category="side">Sides</button>
+    </div>
+    <div id="menu-grid" class="menu-grid"></div>
+
+    <div class="cart-summary">
+        <h3>Cart Summary <span id="cart-count">(0)</span></h3>
+        <ul id="cart-list"></ul>
+        <p>Total: ₦<span id="totalAmount">0</span></p>
+        <button id="orderButton">Order & Send to WhatsApp</button>
+    </div>
+</section>
+<section id="portfolio" class="section">
+    <h2>Our Dishes Portfolio</h2>
+    <div class="portfolio-grid" id="portfolio-grid"></div>
+</section>
+
+<section id="contact" class="section contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:chigowon2016@gmail.com">chigowon2016@gmail.com.com</a></p>
+    <p>Phone: <a href="tel:08103140192">+234 810 314 0192</a></p>
+    <p>Open: Tue – Sun • 8am – 10pm</p>
+</section>
+<div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" src="">
+    <p class="lightbox-caption"></p>
+</div>
+
+<footer>
+    <p>© 2025 Ember & Grove Restaurant</p>
+</footer>
+<div id="notification" class="notification">Order sent successfully!</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
