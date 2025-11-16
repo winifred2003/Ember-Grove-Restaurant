@@ -19,13 +19,13 @@ header {
     height: 50px;
 }
 header .logo h1 {
-    font-size: 25px;
+    font-size: 28px;
     margin: 0;
     color: #f3c384;
 }
 header .logo p {
     font-size: 14px;
-    margin-top: -8px;
+    margin-top: 0px;
     color: #fff;
 }
 header nav a {
@@ -288,10 +288,10 @@ footer {
         padding: 10px 20px;
     }
     header .logo h1 {
-        font-size: 30px;
+        font-size: 35px;
     }
     header .logo p {
-        font-size: 15px;
+        font-size: 16px;
     }
     header nav a {
         display: block;
@@ -327,10 +327,10 @@ footer {
         padding: 8px 15px;
     }
     header .logo h1 {
-        font-size: 20px;
+        font-size: 25px;
     }
     header .logo p {
-        font-size: 13px;
+        font-size: 15px;
     }
     .hero {
         font-size: 20px;
