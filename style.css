@@ -360,7 +360,20 @@ footer {
         z-index: 2000;
          margin-top: 69px;
   
-}
+       }
+        #menu-icon {
+        font-size: 32px;
+        cursor: pointer;
+        padding: 8px 12px;
+        background: #944d1e;
+        color: white;
+       border-radius: 8px;
+       position: fixed;
+        margin-top: 30px;
+        right: 15px;
+        z-index: 2000;
+        }
+
     .hero {
         font-size: 22px;
         padding: 10px 10px;
@@ -406,7 +419,19 @@ footer {
       z-index: 2000;
      margin-top: 69px;
   
-}
+    }
+     #menu-icon {
+        font-size: 32px;
+        cursor: pointer;
+        padding: 8px 12px;
+        background: #944d1e;
+        color: white;
+       border-radius: 8px;
+       position: fixed;
+        margin-top: 30px;
+        right: 15px;
+        z-index: 2000;
+      }
     .hero {
         font-size: 20px;
     }
