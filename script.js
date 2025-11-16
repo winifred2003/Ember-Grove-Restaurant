@@ -12,6 +12,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+
 const menuItems = [
   { id: 1, name: "Egusi Soup", category: "soup", price: 5000, img: "images/egu.jpg" },
   { id: 2, name: "Efo Riro", category: "soup", price: 5000, img: "images/efo.jpg" },
@@ -42,117 +43,136 @@ const cartList = document.getElementById("cart-list");
 const cartCount = document.getElementById("cart-count");
 const totalAmount = document.getElementById("totalAmount");
 const orderButton = document.getElementById("orderButton");
+const portfolioGrid = document.getElementById("portfolio-grid");
 
-
+/* ---------------------------------------------------
+   RENDER MENU ITEMS
+--------------------------------------------------- */
 function renderMenu(items) {
   menuGrid.innerHTML = "";
+
   items.forEach(item => {
     const card = document.createElement("div");
     card.classList.add("menu-card");
+
     card.innerHTML = `
       <img src="${item.img}" alt="${item.name}" class="menu-img">
       <h4>${item.name}</h4>
-      <p>₦${item.price}</p>
-      <div class="qty-buttons">
-        <button class="minus">-</button>
-        <span class="qty">0</span>
-        <button class="plus">+</button>
+      <p class="price">₦${item.price}</p>
+
+      <div class="qty-row">
+        <div class="qty-buttons">
+          <button class="minus">-</button>
+          <span class="qty">0</span>
+          <button class="plus">+</button>
+        </div>
       </div>
+
       <button class="add-cart">Add to Cart</button>
     `;
+
     menuGrid.appendChild(card);
 
-    let qty = 0; 
+    let qty = 0;
     const qtySpan = card.querySelector(".qty");
-    qtySpan.textContent = qty;
 
     card.querySelector(".plus").addEventListener("click", () => {
       qty++;
       qtySpan.textContent = qty;
     });
+
     card.querySelector(".minus").addEventListener("click", () => {
-      if(qty > 0) qty--;
+      if (qty > 0) qty--;
       qtySpan.textContent = qty;
     });
 
     card.querySelector(".add-cart").addEventListener("click", () => {
-      if(qty === 0) return; 
+      if (qty === 0) return;
+
       const existing = cart.find(c => c.id === item.id);
-      if(existing) {
+      if (existing) {
         existing.qty += qty;
       } else {
         cart.push({ ...item, qty });
       }
+
+      qty = 0;
+      qtySpan.textContent = 0;
+
       updateCart();
-      qty = 0; 
-      qtySpan.textContent = qty;
+      showNotification("Item added to cart!");
     });
   });
 }
 
 function updateCart() {
   cartList.innerHTML = "";
+
   cart.forEach(item => {
     const li = document.createElement("li");
-    li.innerHTML = `${item.name} x${item.qty} = ₦${item.price*item.qty}`;
+    li.innerHTML = `${item.name} x${item.qty} — ₦${item.price * item.qty}`;
     cartList.appendChild(li);
   });
-  const total = cart.reduce((acc, item) => acc + item.price*item.qty, 0);
+
+  const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
   totalAmount.textContent = total;
   cartCount.textContent = cart.length;
 }
 
-const filterButtons = document.querySelectorAll(".menu-filters button");
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    filterButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    const category = btn.dataset.category;
-    if(category === "all") renderMenu(menuItems);
-    else renderMenu(menuItems.filter(i => i.category === category));
+
+document.querySelectorAll(".menu-filters button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelector(".menu-filters .active")?.classList.remove("active");
+    button.classList.add("active");
+
+    const category = button.dataset.category;
+    if (category === "all") renderMenu(menuItems);
+    else renderMenu(menuItems.filter(item => item.category === category));
   });
 });
 
-orderButton.addEventListener("click", () => {
-    if(cart.length === 0) return alert("Your cart is empty!");
+orderButton.addEventListener("click", async () => {
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
 
-    let message = "Hello, I would like to place this order:\n";
-    cart.forEach(item => {
-        message += `${item.name} x${item.qty} = ₦${item.price*item.qty}\n`;
-    });
-    message += `Total: ₦${cart.reduce((acc,item)=>acc+item.price*item.qty,0)}`;
+  let message = "Hello, I would like to place an order:\n\n";
+  cart.forEach(item => {
+    message += `${item.name} x${item.qty} = ₦${item.qty * item.price}\n`;
+  });
 
-    const whatsappURL = `https://wa.me/2348103140192?text=${encodeURIComponent(message)}`;
-    window.open(whatsappURL, "_blank");
+  const total = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
+  message += `\nTotal: ₦${total}`;
 
-    db.collection("orders").add({
-        order: cart,
-        total: cart.reduce((acc,item)=>acc+item.price*item.qty,0),
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
+  const whatsappURL = `https://wa.me/2348103140192?text=${encodeURIComponent(message)}`;
+  window.open(whatsappURL, "_blank");
 
-    cart = [];
-    updateCart();
+  await db.collection("orders").add({
+    order: cart,
+    total,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  });
 
-    const notification = document.getElementById("notification");
-    notification.style.display = "block";
-    setTimeout(() => {
-        notification.style.display = "none";
-    }, 3000);
+  cart = [];
+  updateCart();
+  showNotification("Order sent successfully!");
 });
 
-const portfolioGrid = document.getElementById("portfolio-grid");
+
 function renderPortfolio() {
   menuItems.forEach(item => {
     const img = document.createElement("img");
     img.src = item.img;
     img.alt = item.name;
     img.classList.add("portfolio-img");
+
     portfolioGrid.appendChild(img);
 
     img.addEventListener("click", () => {
       const lightbox = document.getElementById("lightbox");
       lightbox.style.display = "flex";
+
       lightbox.querySelector(".lightbox-img").src = item.img;
       lightbox.querySelector(".lightbox-caption").textContent = item.name;
     });
@@ -163,14 +183,9 @@ document.querySelector(".lightbox .close").addEventListener("click", () => {
   document.getElementById("lightbox").style.display = "none";
 });
 
-renderMenu(menuItems);
-renderPortfolio();
-updateCart();
-// === NAV MENU TOGGLE WITH FADE EFFECT ===
 const menuIcon = document.getElementById("menu-icon");
 const navMenu = document.getElementById("navMenu");
 
-// hide by default
 navMenu.style.display = "none";
 
 menuIcon.addEventListener("click", () => {
@@ -188,7 +203,6 @@ menuIcon.addEventListener("click", () => {
   }
 });
 
-// === FADE OUT AFTER LINK CLICK ===
 document.querySelectorAll("#navMenu a").forEach(link => {
   link.addEventListener("click", () => {
     navMenu.classList.remove("fade-in");
@@ -200,3 +214,17 @@ document.querySelectorAll("#navMenu a").forEach(link => {
   });
 });
 
+
+function showNotification(text) {
+  const note = document.getElementById("notification");
+  note.textContent = text;
+  note.style.display = "block";
+
+  setTimeout(() => {
+    note.style.display = "none";
+  }, 2500);
+}
+
+renderMenu(menuItems);
+renderPortfolio();
+updateCart();

@@ -9,20 +9,21 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
-
 <header>
     <div class="logo">
-        <h1>Ember & Grove Restaurant</h1>
+        <h1>Ember & Grove</h1>
         <p>Authentic Nigerian Flavors</p>
     </div>
     <div id="menu-icon">☰</div>
     <nav id="navMenu">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#menu">Menu</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-        <a href="#cart-list">Check out</a>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#cart-list">Check Out</a></li>
+        </ul>
     </nav>
 </header>
 
@@ -34,14 +35,13 @@
     </div>
 </section>
 
-<section id="about" class="section">
+<section id="about" class="section about-section">
     <h2>About Us</h2>
-    <p>Ember & Grove Restaurant serves traditional Nigerian dishes with premium ingredients and a modern twist. Taste the culture today! <br>
-    Ember & Grove Restaurant was founded to bring the authentic flavors of Nigeria to every table. Our passion is preserving traditional recipes while presenting them with a modern, elegant touch. Every dish is prepared with love, fresh ingredients, and a dedication to quality that makes each meal unforgettable.</p>
-    <p>Our team is committed to providing exceptional service, maintaining clean and welcoming spaces, and ensuring that every customer leaves satisfied. Whether you’re dining in, picking up a takeaway, or ordering for a special event, Ember & Grove promises delicious food, memorable moments, and a taste of home.</p>
+    <p>Ember & Grove Restaurant serves traditional Nigerian dishes with premium ingredients and a modern twist. Taste the culture today!</p>
+    <p>Founded to bring authentic flavors to every table, we combine tradition with elegance. Every dish is made with fresh ingredients, love, and dedication to quality.</p>
+    <p>Our team ensures exceptional service, clean spaces, and memorable experiences. Whether dining in, takeaway, or catering for events, Ember & Grove delivers unforgettable meals.</p>
 </section>
-
-<section id="services" class="section">
+<section id="services" class="section services-section">
     <h2>Our Services</h2>
     <ul>
         <li>Dine-In</li>
@@ -53,7 +53,7 @@
     </ul>
 </section>
 
-<section id="menu" class="menu-section">
+<section id="menu" class="menu-section section">
     <h2>Our Menu</h2>
     <div class="menu-filters">
         <button data-category="all" class="active">All</button>
@@ -71,27 +71,28 @@
         <button id="orderButton">Order & Send to WhatsApp</button>
     </div>
 </section>
-<section id="portfolio" class="section">
+
+<section id="portfolio" class="section portfolio-section">
     <h2>Our Dishes Portfolio</h2>
     <div class="portfolio-grid" id="portfolio-grid"></div>
 </section>
-
-<section id="contact" class="section contact">
+<section id="contact" class="section contact-section">
     <h2>Contact Us</h2>
-    <p>Email: <a href="mailto:chigowon2016@gmail.com">chigowon2016@gmail.com.com</a></p>
+    <p>Email: <a href="mailto:chigowon2016@gmail.com">chigowon2016@gmail.com</a></p>
     <p>Phone: <a href="tel:08103140192">+234 810 314 0192</a></p>
     <p>Open: Tue – Sun • 8am – 10pm</p>
 </section>
+
 <div id="lightbox" class="lightbox">
     <span class="close">&times;</span>
-    <img class="lightbox-img" src="">
+    <img class="lightbox-img" src="" alt="">
     <p class="lightbox-caption"></p>
 </div>
 
+<div id="notification" class="notification">Order sent successfully!</div>
 <footer>
     <p>© 2025 Ember & Grove Restaurant</p>
 </footer>
-<div id="notification" class="notification">Order sent successfully!</div>
 
 <script src="script.js"></script>
 
