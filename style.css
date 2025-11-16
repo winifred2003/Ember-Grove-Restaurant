@@ -33,10 +33,22 @@ header nav a {
     margin-left: 20px;
     text-decoration: none;
     font-weight: 500;
+    
 }
 header nav a:hover {
     color: #f3c384;
 }
+header nav {
+  display: none;
+  background: #fff8f2;
+  padding: 15px;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
 
 .hero {
     background: url('images/hero-bg.jpg') center/cover no-repeat;
@@ -75,11 +87,50 @@ header nav a:hover {
 .section p{
     font-size: 20px;
 }
-.section ul{
-    font-size: 25px;
-    font-weight: 300px;
-    margin-top: -10px;
+
+#menu-icon {
+  font-size: 32px;
+  cursor: pointer;
+  padding: 8px 12px;
+  background: #944d1e;
+  color: white;
+  border-radius: 8px;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 2000;
 }
+
+#navMenu {
+  position: fixed;
+  right: 15px;
+  background: hsl(24, 48%, 28%);
+  display: none;
+  z-index: 2000;
+  margin-top: 23px;
+  
+}
+
+#navMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+ font-size: 30px;
+ font-weight: 300px;
+ margin-top: -10px;
+}
+
+
+#navMenu ul li {
+  margin-bottom: 10px;
+}
+
+#navMenu ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
 
 .menu-section h2{
     font-size: 33px;
@@ -152,7 +203,7 @@ header nav a:hover {
 }
 
 .cart-summary {
-    margin-top: 40px;
+    margin-top: 50px;
     background-color: #dec9b5;
     padding: 20px;
     border-radius: 10px;
@@ -196,7 +247,6 @@ header nav a:hover {
     transform: scale(1.02);
 }
 
-/* Lightbox */
 .lightbox {
     display: none;
     position: fixed;
@@ -286,17 +336,31 @@ footer {
 @media (max-width: 768px) {
     header {
         padding: 10px 20px;
+        height: auto;
     }
     header .logo h1 {
         font-size: 35px;
     }
     header .logo p {
-        font-size: 16px;
+        font-size: 18px;
     }
     header nav a {
-        display: block;
+        display: grid;
+        align-content: center;
         margin: 5px 0;
+
     }
+    
+    #navMenu {
+       position: fixed;
+       right: 15px;
+       background: hsl(24, 48%, 28%);
+       padding: 55px 150px;
+       display: none;
+        z-index: 2000;
+         margin-top: 69px;
+  
+}
     .hero {
         font-size: 22px;
         padding: 10px 10px;
@@ -325,13 +389,24 @@ footer {
 @media (max-width: 480px) {
     header {
         padding: 8px 15px;
+        height: 110px;
     }
     header .logo h1 {
-        font-size: 25px;
+        font-size: 30px;
     }
     header .logo p {
-        font-size: 15px;
+        font-size: 18px;
     }
+    #navMenu {
+     position: fixed;
+      right: 15px;
+      background: hsl(24, 48%, 28%);
+      padding: 55px 150px;
+      display: none;
+      z-index: 2000;
+     margin-top: 69px;
+  
+}
     .hero {
         font-size: 20px;
     }
@@ -356,4 +431,22 @@ footer {
         padding: 6px 10px;
         font-size: 14px;
     }
+}
+/* Fade animation */
+.fade-in {
+  animation: fadeIn 0.3s forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
 }

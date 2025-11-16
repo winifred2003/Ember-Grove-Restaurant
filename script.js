@@ -43,6 +43,7 @@ const cartCount = document.getElementById("cart-count");
 const totalAmount = document.getElementById("totalAmount");
 const orderButton = document.getElementById("orderButton");
 
+
 function renderMenu(items) {
   menuGrid.innerHTML = "";
   items.forEach(item => {
@@ -165,3 +166,37 @@ document.querySelector(".lightbox .close").addEventListener("click", () => {
 renderMenu(menuItems);
 renderPortfolio();
 updateCart();
+// === NAV MENU TOGGLE WITH FADE EFFECT ===
+const menuIcon = document.getElementById("menu-icon");
+const navMenu = document.getElementById("navMenu");
+
+// hide by default
+navMenu.style.display = "none";
+
+menuIcon.addEventListener("click", () => {
+  if (navMenu.style.display === "none") {
+    navMenu.style.display = "block";
+    navMenu.classList.remove("fade-out");
+    navMenu.classList.add("fade-in");
+  } else {
+    navMenu.classList.remove("fade-in");
+    navMenu.classList.add("fade-out");
+
+    setTimeout(() => {
+      navMenu.style.display = "none";
+    }, 300);
+  }
+});
+
+// === FADE OUT AFTER LINK CLICK ===
+document.querySelectorAll("#navMenu a").forEach(link => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("fade-in");
+    navMenu.classList.add("fade-out");
+
+    setTimeout(() => {
+      navMenu.style.display = "none";
+    }, 300);
+  });
+});
+
