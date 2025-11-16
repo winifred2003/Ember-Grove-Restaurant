@@ -252,3 +252,107 @@ footer {
     display: none;
     z-index: 3000;
 }
+@media (max-width: 1024px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 30px;
+        height: auto;
+    }
+    header nav {
+        margin-top: 10px;
+    }
+    header nav a {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+    .hero {
+        font-size: 26px;
+        padding: 15px 15px;
+    }
+    .hero .cta-button {
+        font-size: 18px;
+        padding: 5px 10px;
+    }
+    .section h2 {
+        font-size: 30px;
+    }
+    .section p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 20px;
+    }
+    header .logo h1 {
+        font-size: 20px;
+    }
+    header .logo p {
+        font-size: 12px;
+    }
+    header nav a {
+        display: block;
+        margin: 5px 0;
+    }
+    .hero {
+        font-size: 22px;
+        padding: 10px 10px;
+    }
+    .hero .cta-button {
+        font-size: 16px;
+        padding: 4px 8px;
+    }
+    .section {
+        padding: 40px 15px;
+    }
+    .section h2 {
+        font-size: 28px;
+    }
+    .section p {
+        font-size: 16px;
+    }
+    .menu-grid, .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .menu-card img {
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 8px 15px;
+    }
+    header .logo h1 {
+        font-size: 18px;
+    }
+    header .logo p {
+        font-size: 10px;
+    }
+    .hero {
+        font-size: 20px;
+    }
+    .hero .cta-button {
+        font-size: 14px;
+        padding: 3px 6px;
+    }
+    .section h2 {
+        font-size: 24px;
+    }
+    .section p {
+        font-size: 14px;
+    }
+    .menu-card img {
+        height: 120px;
+    }
+    .menu-card .qty-buttons button {
+        width: 24px;
+        height: 24px;
+    }
+    .menu-card .add-cart {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
